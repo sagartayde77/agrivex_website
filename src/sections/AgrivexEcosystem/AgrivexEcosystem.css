@@ -1,0 +1,152 @@
+.agrivex-ecosystem {
+  padding-block: var(--space-20) var(--section-padding);
+  background: var(--color-surface-page);
+}
+
+.agrivex-ecosystem__intro {
+  max-width: var(--container-md);
+}
+
+.agrivex-ecosystem__eyebrow {
+  margin-bottom: var(--space-4);
+  color: var(--color-brand-primary-strong);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-compact);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.agrivex-ecosystem__intro h2 {
+  font-size: calc(var(--font-size-3xl) * 0.74);
+}
+
+.agrivex-ecosystem__intro p {
+  max-width: var(--container-sm);
+  margin-top: var(--space-6);
+  font-size: var(--font-size-lg);
+}
+
+/* Timeline */
+.agrivex-ecosystem__stages {
+  position: relative;
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-8) var(--space-0);
+  margin-top: var(--space-8);
+  list-style: none;
+}
+
+/* Vertical center line */
+.agrivex-ecosystem__stages::before {
+  content: '';
+  position: absolute;
+  top: var(--space-4);
+  bottom: var(--space-4);
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-brand-primary-soft),
+    var(--color-border-default),
+    var(--color-brand-primary-soft)
+  );
+  transform: translateX(-50%);
+}
+
+.agrivex-ecosystem__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--space-8) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-0);
+  position: relative;
+}
+
+/* Dot on the timeline */
+.agrivex-ecosystem__dot {
+  grid-column: 2;
+  width: var(--space-3);
+  height: var(--space-3);
+  justify-self: center;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-primary);
+  box-shadow: 0 0 0 4px var(--color-brand-primary-soft);
+  z-index: 1;
+  transition:
+    transform var(--duration-base) var(--ease-emphasized),
+    box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.agrivex-ecosystem__stage:hover .agrivex-ecosystem__dot {
+  transform: scale(1.4);
+  box-shadow: 0 0 0 6px var(--color-brand-accent-soft);
+}
+
+.agrivex-ecosystem__stage-content {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--container-xs);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.agrivex-ecosystem__stage:hover .agrivex-ecosystem__stage-content {
+  background: var(--color-surface-default);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Odd items: left side, text right-aligned */
+.agrivex-ecosystem__stage:nth-child(odd) .agrivex-ecosystem__stage-content {
+  grid-column: 1;
+  justify-self: end;
+  text-align: right;
+}
+
+/* Even items: right side */
+.agrivex-ecosystem__stage:nth-child(even) .agrivex-ecosystem__stage-content {
+  grid-column: 3;
+  justify-self: start;
+}
+
+.agrivex-ecosystem__stage-content h3 {
+  font-size: var(--font-size-xl);
+}
+
+.agrivex-ecosystem__stage-content p {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 720px) {
+  .agrivex-ecosystem__stages {
+    gap: var(--space-6);
+    padding-left: var(--space-8);
+    margin-top: var(--space-12);
+  }
+
+  .agrivex-ecosystem__stages::before {
+    left: var(--space-2);
+  }
+
+  .agrivex-ecosystem__stage {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .agrivex-ecosystem__dot {
+    position: absolute;
+    top: var(--space-5);
+    left: calc(var(--space-8) * -1 + var(--space-2));
+    grid-column: auto;
+  }
+
+  .agrivex-ecosystem__stage-content,
+  .agrivex-ecosystem__stage:nth-child(odd) .agrivex-ecosystem__stage-content,
+  .agrivex-ecosystem__stage:nth-child(even) .agrivex-ecosystem__stage-content {
+    grid-column: 1;
+    justify-self: stretch;
+    text-align: left;
+  }
+}

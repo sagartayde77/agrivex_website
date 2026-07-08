@@ -1,0 +1,101 @@
+.careers {
+  padding-block: var(--space-20) var(--space-24);
+  background: var(--color-surface-page);
+}
+
+.careers__intro {
+  max-width: var(--container-md);
+}
+
+.careers__eyebrow {
+  margin-bottom: var(--space-4);
+  color: var(--color-brand-primary-strong);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-compact);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.careers__intro h2 {
+  font-size: calc(var(--font-size-3xl) * 0.64);
+}
+
+.careers__intro p {
+  max-width: var(--container-sm);
+  margin-top: var(--space-6);
+  font-size: var(--font-size-lg);
+}
+
+.careers__content {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: var(--space-16);
+  margin-top: var(--space-12);
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.careers__why {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-5);
+}
+
+.careers__why h3,
+.careers__opportunities h3 {
+  font-size: var(--font-size-xl);
+}
+
+.careers__opportunities ul {
+  display: grid;
+  gap: var(--space-0);
+  margin-top: var(--space-5);
+  padding: var(--space-0);
+  list-style: none;
+}
+
+.careers__opportunity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-border-default);
+  color: var(--color-text-secondary);
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    padding-left var(--duration-base) var(--ease-standard);
+}
+
+.careers__opportunity:hover {
+  color: var(--color-brand-primary-strong);
+  padding-left: var(--space-3);
+}
+
+.careers__opportunity-arrow {
+  display: inline-block;
+  color: var(--color-brand-primary);
+  font-weight: var(--font-weight-bold);
+  transform: translateX(-4px);
+  opacity: 0;
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    opacity var(--duration-base) var(--ease-standard);
+}
+
+.careers__opportunity:hover .careers__opportunity-arrow {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.careers__why p {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 920px) {
+  .careers__content {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}

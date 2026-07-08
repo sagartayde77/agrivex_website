@@ -1,0 +1,81 @@
+.strategic-capabilities {
+  padding-block: var(--space-24) var(--space-20);
+  background: var(--color-surface-page);
+}
+
+.strategic-capabilities__intro {
+  max-width: var(--container-md);
+}
+
+.strategic-capabilities__eyebrow {
+  margin-bottom: var(--space-4);
+  color: var(--color-brand-primary-strong);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-compact);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.strategic-capabilities__intro h2 {
+  font-size: calc(var(--font-size-3xl) * 0.72);
+}
+
+.strategic-capabilities__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-16);
+  row-gap: var(--space-6);
+  margin-top: var(--space-16);
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.strategic-capabilities__item {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  transition:
+    border-color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.strategic-capabilities__item:hover {
+  border-color: var(--color-border-default);
+  background: var(--color-surface-default);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.strategic-capabilities__number {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-compact);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.strategic-capabilities__item:hover .strategic-capabilities__number {
+  color: var(--color-brand-primary);
+}
+
+.strategic-capabilities__item h3 {
+  font-size: var(--font-size-xl);
+}
+
+.strategic-capabilities__item p {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 720px) {
+  .strategic-capabilities__grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-4);
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+  }
+}

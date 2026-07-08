@@ -1,0 +1,77 @@
+.dealer-partnership {
+  padding-block: var(--space-20) var(--section-padding);
+  background: var(--color-surface-page);
+}
+
+.dealer-partnership__container {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 0.75fr);
+  align-items: start;
+  gap: var(--space-16);
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.dealer-partnership__content {
+  max-width: var(--container-md);
+}
+
+.dealer-partnership__eyebrow {
+  margin-bottom: var(--space-4);
+  color: var(--color-brand-primary-strong);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-compact);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dealer-partnership__content h2 {
+  font-size: calc(var(--font-size-3xl) * 0.68);
+}
+
+.dealer-partnership__content p:not(.dealer-partnership__eyebrow) {
+  max-width: var(--container-sm);
+  margin-top: var(--space-6);
+  font-size: var(--font-size-lg);
+}
+
+.dealer-partnership__action {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.dealer-partnership__benefits {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-0);
+  list-style: none;
+}
+
+.dealer-partnership__benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-body);
+}
+
+.dealer-partnership__check {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  margin-top: 2px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-primary-soft);
+  color: var(--color-brand-primary-strong);
+}
+
+@media (max-width: 920px) {
+  .dealer-partnership__container {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}

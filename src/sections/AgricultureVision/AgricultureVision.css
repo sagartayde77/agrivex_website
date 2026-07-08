@@ -1,0 +1,112 @@
+.agriculture-vision {
+  padding-block: var(--section-padding) var(--space-24);
+  background: var(--color-surface-page);
+}
+
+.agriculture-vision__intro {
+  max-width: var(--container-lg);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.agriculture-vision__intro h2 {
+  max-width: var(--container-md);
+  margin-inline: auto;
+  font-size: calc(var(--font-size-3xl) * 0.8);
+}
+
+.agriculture-vision__eyebrow {
+  margin-bottom: var(--space-4);
+  color: var(--color-brand-primary-strong);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-compact);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.agriculture-vision__copy {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--container-sm);
+  margin: var(--space-6) auto 0;
+}
+
+.agriculture-vision__copy p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+}
+
+.agriculture-vision__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-12);
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.agriculture-vision__pillar {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  transition:
+    border-color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard);
+}
+
+.agriculture-vision__pillar:hover {
+  border-color: var(--color-border-default);
+  background: var(--color-surface-default);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.agriculture-vision__number {
+  color: var(--color-brand-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-compact);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.agriculture-vision__pillar:hover .agriculture-vision__number {
+  color: var(--color-brand-accent);
+}
+
+.agriculture-vision__pillar h3 {
+  font-size: var(--font-size-xl);
+}
+
+.agriculture-vision__pillar p {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 920px) {
+  .agriculture-vision__pillars {
+    gap: var(--space-8);
+    margin-top: var(--space-10);
+    padding-top: var(--space-8);
+  }
+}
+
+@media (max-width: 720px) {
+  .agriculture-vision__intro {
+    text-align: left;
+  }
+
+  .agriculture-vision__copy {
+    margin-top: var(--space-5);
+  }
+
+  .agriculture-vision__pillars {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+    padding-top: var(--space-8);
+  }
+}
