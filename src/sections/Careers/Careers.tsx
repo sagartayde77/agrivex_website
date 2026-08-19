@@ -1,64 +1,52 @@
-import Button from '../../components/shared/Button'
 import Container from '../../components/shared/Container'
 import Reveal from '../../components/shared/Reveal'
 import './Careers.css'
 
-const opportunities = [
-  'Agronomist',
-  'Area Sales Executive',
-  'Territory Manager',
-  'Business Development Executive',
-  'Digital Marketing Executive',
-  'Operations Executive',
-  'Technology Professionals',
-  'Internships',
-] as const
+function CareerCTA() {
+  const handleContactClick = () => {
+    document.getElementById('contact')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
 
-function Careers() {
   return (
-    <section className="careers" id="careers" aria-labelledby="careers-title">
+    <section className="career-cta" aria-labelledby="career-cta-title">
       <Container>
-        <Reveal className="careers__intro">
-          <p className="careers__eyebrow">CAREERS</p>
-          <h2 id="careers-title">Build the Future of Agriculture with Agrivex</h2>
-          <p>
-            Agrivex welcomes people who want to work at the intersection of
-            agriculture, science, technology, field execution, and sustainable
-            progress.
-          </p>
-        </Reveal>
+        <Reveal className="career-cta__ribbon">
+          {/* Animated background elements */}
+          <span className="career-cta__orb career-cta__orb--one" />
+          <span className="career-cta__orb career-cta__orb--two" />
+          <span className="career-cta__orb career-cta__orb--three" />
 
-        <div className="careers__content">
-          <Reveal className="careers__why">
-            <h3>Why Join Agrivex</h3>
-            <p>
-              Work on meaningful agricultural challenges with a company focused
-              on innovation, precision, digital agriculture, and farmer impact.
-            </p>
-            <Button href="#career-opportunities" variant="secondary">
-              View Careers
-            </Button>
-          </Reveal>
+          <span className="career-cta__grid" aria-hidden="true" />
 
-          <Reveal
-            className="careers__opportunities"
-            id="career-opportunities"
-            delay={120}
+          <div className="career-cta__content">
+            <span className="career-cta__eyebrow">
+              CAREERS AT AGRIVEX
+            </span>
+
+            <h2 id="career-cta-title">
+              Build the future of agriculture with us.
+            </h2>
+          </div>
+
+          <button
+            type="button"
+            className="career-cta__button"
+            onClick={handleContactClick}
           >
-            <h3>Current Opportunities</h3>
-            <ul>
-              {opportunities.map((opportunity) => (
-                <li key={opportunity} className="careers__opportunity">
-                  <span className="careers__opportunity-arrow" aria-hidden="true">→</span>
-                  {opportunity}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
+            <span>Get in Touch</span>
+            <span className="career-cta__arrow" aria-hidden="true">
+              ↗
+            </span>
+          </button>
+
+          <span className="career-cta__scanline" aria-hidden="true" />
+        </Reveal>
       </Container>
     </section>
   )
 }
 
-export default Careers
+export default CareerCTA
