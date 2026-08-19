@@ -12,13 +12,18 @@ function Navbar() {
 
   useEffect(() => {
     const updateScrollState = () => {
-      setIsScrolled(window.scrollY > 8)
+      setIsScrolled(window.scrollY > 40)
     }
 
     updateScrollState()
-    window.addEventListener('scroll', updateScrollState, { passive: true })
 
-    return () => window.removeEventListener('scroll', updateScrollState)
+    window.addEventListener('scroll', updateScrollState, {
+      passive: true,
+    })
+
+    return () => {
+      window.removeEventListener('scroll', updateScrollState)
+    }
   }, [])
 
   useEffect(() => {
@@ -36,10 +41,13 @@ function Navbar() {
           }
         })
       },
-      { rootMargin: '-40% 0px -55% 0px' }
+      {
+        rootMargin: '-35% 0px -55% 0px',
+      },
     )
 
     sections.forEach((section) => observer.observe(section))
+
     return () => observer.disconnect()
   }, [])
 
@@ -51,55 +59,88 @@ function Navbar() {
     }
 
     document.addEventListener('keydown', closeOnEscape)
-    return () => document.removeEventListener('keydown', closeOnEscape)
+
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape)
+    }
   }, [])
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+
     return () => {
       document.body.style.overflow = ''
     }
   }, [isMenuOpen])
 
   return (
-    <header className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}>
+    <header
+      className={`navbar ${
+        isScrolled ? 'navbar--scrolled' : ''
+      }`}
+    >
       <Container className="navbar__container">
-        <Logo href="#" />
+        <div className="navbar__brand">
+          <Logo href="#" />
+
+          <span className="navbar__eyebrow">
+            AGRIVEX PVT. LTD.
+          </span>
+        </div>
 
         <button
-          className={`navbar__toggle ${isMenuOpen ? 'navbar__toggle--open' : ''}`}
+          className={`navbar__toggle ${
+            isMenuOpen ? 'navbar__toggle--open' : ''
+          }`}
           type="button"
-          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-label={
+            isMenuOpen
+              ? 'Close navigation menu'
+              : 'Open navigation menu'
+          }
           aria-expanded={isMenuOpen}
           aria-controls="primary-navigation"
-          onClick={() => setIsMenuOpen((currentValue) => !currentValue)}
+          onClick={() =>
+            setIsMenuOpen((currentValue) => !currentValue)
+          }
         >
-          <span className="navbar__toggle-line"></span>
-          <span className="navbar__toggle-line"></span>
-          <span className="navbar__toggle-line"></span>
+          <span className="navbar__toggle-line" />
+          <span className="navbar__toggle-line" />
+          <span className="navbar__toggle-line" />
         </button>
 
         <nav
           id="primary-navigation"
-          className={`navbar__nav ${isMenuOpen ? 'navbar__nav--open' : ''}`}
+          className={`navbar__nav ${
+            isMenuOpen ? 'navbar__nav--open' : ''
+          }`}
           aria-label="Primary navigation"
         >
           <ul className="navbar__links">
-            {navigationLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  className={`navbar__link ${activeSection === link.href ? 'navbar__link--active' : ''}`}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navigationLinks.map((link) => {
+              const isActive = activeSection === link.href
+
+              return (
+                <li key={link.href}>
+                  <a
+                    className={`navbar__link ${
+                      isActive ? 'navbar__link--active' : ''
+                    }`}
+                    href={link.href}
+                    aria-current={isActive ? 'location' : undefined}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              )
+            })}
           </ul>
 
-          <Button className="navbar__button" href="#dealer">
+          <Button
+            className="navbar__button"
+            href="#dealer"
+          >
             Become a Dealer
           </Button>
         </nav>

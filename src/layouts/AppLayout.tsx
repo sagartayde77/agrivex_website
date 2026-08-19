@@ -3,7 +3,6 @@ import Hero from '../sections/Hero/Hero'
 import AgricultureVision from '../sections/AgricultureVision/AgricultureVision'
 import AgrivexEcosystem from '../sections/AgrivexEcosystem/AgrivexEcosystem'
 import StrategicCapabilities from '../sections/StrategicCapabilities/StrategicCapabilities'
-import TechnologyInnovation from '../sections/TechnologyInnovation/TechnologyInnovation'
 import DealerPartnership from '../sections/DealerPartnership/DealerPartnership'
 import FarmerSolutions from '../sections/FarmerSolutions/FarmerSolutions'
 import Careers from '../sections/Careers/Careers'
@@ -22,7 +21,6 @@ function AppLayout() {
         <AgricultureVision />
         <AgrivexEcosystem />
         <StrategicCapabilities />
-        <TechnologyInnovation />
         <DealerPartnership />
         <FarmerSolutions />
         <Careers />
