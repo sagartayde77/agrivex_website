@@ -1,28 +1,8 @@
 import Button from '../../components/shared/Button'
 import Container from '../../components/shared/Container'
 import Reveal from '../../components/shared/Reveal'
+import dealershipImage from '../../assets/images/dealership/dealership.jpeg'
 import './DealerPartnership.css'
-
-const partnershipPrinciples = [
-  {
-    number: '01',
-    title: 'Reliable Supply',
-    description:
-      'Dependable agricultural products backed by consistency, responsiveness, and practical field understanding.',
-  },
-  {
-    number: '02',
-    title: 'Market Support',
-    description:
-      'A partnership built around communication, product knowledge, and support that helps dealers serve their markets better.',
-  },
-  {
-    number: '03',
-    title: 'Long-Term Growth',
-    description:
-      'We aim to build lasting relationships where Agrivex and its dealer network grow together.',
-  },
-] as const
 
 function DealerPartnership() {
   return (
@@ -32,72 +12,87 @@ function DealerPartnership() {
       aria-labelledby="dealer-partnership-title"
     >
       <Container>
-        <div className="dealer-partnership__shell">
-          <div className="dealer-partnership__background-grid" />
+        <div className="dealer-partnership__wrapper">
 
-          <Reveal className="dealer-partnership__header">
-            <div className="dealer-partnership__signal">
-              <span className="dealer-partnership__signal-dot" />
-              <span>DEALER PARTNERSHIP</span>
-            </div>
-
+          {/* Section heading */}
+          <Reveal className="dealer-partnership__heading">
             <span className="dealer-partnership__index">03</span>
+            <span className="dealer-partnership__line" />
+            <span className="dealer-partnership__eyebrow">
+              DEALER PARTNERSHIP
+            </span>
           </Reveal>
 
-          <div className="dealer-partnership__main">
-            <Reveal className="dealer-partnership__statement">
-              <p className="dealer-partnership__kicker">
-                BUILT TO MOVE TOGETHER
-              </p>
+          {/* Main content */}
+          <div className="dealer-partnership__content">
 
-              <h2 id="dealer-partnership-title">
-                Good products
-                <br />
-                need good
-                <em> partners.</em>
-              </h2>
+            {/* Image */}
+            <Reveal
+              className="dealer-partnership__visual"
+              delay={100}
+            >
+              <div className="dealer-partnership__image-frame">
+                <img
+                  src={dealershipImage}
+                  alt="Agrivex dealer partnership"
+                />
 
-              <p className="dealer-partnership__intro">
-                Agrivex works with dealers who value reliability, strong
-                relationships, and long-term growth in agriculture.
-              </p>
+                <div
+                  className="dealer-partnership__image-overlay"
+                  aria-hidden="true"
+                />
+
+                <span className="dealer-partnership__image-label">
+                  AGRIVEX PARTNERSHIP
+                </span>
+              </div>
             </Reveal>
 
-            <div className="dealer-partnership__principles">
-              {partnershipPrinciples.map((principle, index) => (
-                <Reveal
-                  as="article"
-                  key={principle.number}
-                  className="dealer-partnership__principle"
-                  delay={index * 120}
-                >
-                  <div className="dealer-partnership__principle-top">
-                    <span className="dealer-partnership__number">
-                      {principle.number}
-                    </span>
+            {/* Text */}
+            <Reveal
+              className="dealer-partnership__copy"
+              delay={220}
+            >
+              <span className="dealer-partnership__kicker">
+                BUILT TO MOVE TOGETHER
+              </span>
 
-                    <span className="dealer-partnership__arrow">
-                      ↗
-                    </span>
-                  </div>
+              <h2 id="dealer-partnership-title">
+                Partner with Agrivex
+                <br />
+                to grow
+                <em> together.</em>
+              </h2>
 
-                  <div className="dealer-partnership__principle-content">
-                    <h3>{principle.title}</h3>
-                    <p>{principle.description}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+              <p className="dealer-partnership__description">
+                Agrivex works with dealers who believe that strong
+                agricultural relationships are built through reliable
+                products, practical support, and long-term commitment.
+              </p>
+
+              <div className="dealer-partnership__action">
+                <Button href="#contact">
+                  Become a Dealer
+                </Button>
+
+                <span className="dealer-partnership__action-note">
+                  Join the Agrivex network
+                </span>
+              </div>
+            </Reveal>
           </div>
 
-          <Reveal className="dealer-partnership__footer" delay={180}>
-            <div className="dealer-partnership__footer-copy">
-              <span>READY TO BUILD THE NEXT CONNECTION?</span>
-              <strong>Become part of the Agrivex network.</strong>
-            </div>
-
-            <Button href="#contact">Become a Dealer</Button>
+          {/* Bottom statement */}
+          <Reveal
+            className="dealer-partnership__bottom"
+            delay={350}
+          >
+            <span>RELIABILITY</span>
+            <span>SUPPORT</span>
+            <span>RELATIONSHIP</span>
+            <span>GROWTH</span>
           </Reveal>
+
         </div>
       </Container>
     </section>
