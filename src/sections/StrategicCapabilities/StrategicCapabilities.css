@@ -3,12 +3,6 @@
   background: var(--color-surface-page);
 }
 
-/* =========================================
-   SECTION LABEL — matches the numbered
-   section marker used across the page
-   (01 Vision, 02 Ecosystem, 03 here...).
-========================================= */
-
 .strategic-capabilities__label {
   display: flex;
   align-items: center;
@@ -17,115 +11,84 @@
   color: var(--color-brand-primary-strong);
 }
 
-.strategic-capabilities__label span {
-  font-size: 0.8rem;
-  font-weight: 700; 
-}
-
-.strategic-capabilities__label i {
-  display: block;
-  width: 3rem;
-  height: 1px;
-  background: var(--color-brand-primary);
-  opacity: 0.6;
-}
-
-.strategic-capabilities__label strong {
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-}
-
-/* =========================================
-   HEADER
-========================================= */
+.strategic-capabilities__label span { font-size: .8rem; font-weight: 700; }
+.strategic-capabilities__label i { width: 3rem; height: 1px; background: var(--color-brand-primary); opacity: .6; }
+.strategic-capabilities__label strong { font-size: .78rem; letter-spacing: .16em; }
 
 .strategic-capabilities__header-content {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.65fr);
-  align-items: end;
-  gap: clamp(3rem, 8vw, 9rem);
-
-  margin-bottom: clamp(3.5rem, 6vw, 5.5rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
 }
 
 .strategic-capabilities__header-content h2 {
   max-width: 700px;
   margin: 0;
-
   font-size: clamp(2.8rem, 5vw, 5rem);
-  line-height: 0.98;
-  letter-spacing: -0.045em;
+  line-height: .98;
+  letter-spacing: -.045em;
 }
 
-.strategic-capabilities__header-content p {
-  max-width: 430px;
-  margin: 0;
-
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-lg);
-  line-height: 1.7;
-}
-
-/* =========================================
-   PANEL SHELL
-========================================= */
-
-.strategic-capabilities__panel {
-  display: grid;
-  gap: 1.75rem;
-}
-
-/* =========================================
-   TABS — pill switcher, reuses the site's
-   radius-full pill language from Button.
-========================================= */
+.strategic-capabilities__panel { display: grid; gap: 1.5rem; }
 
 .strategic-capabilities__tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: .65rem;
 }
 
 .strategic-capabilities__tab {
   --tone: var(--color-brand-primary);
   --tone-strong: var(--color-brand-primary-strong);
   --tone-soft: var(--color-brand-primary-soft);
-
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-
+  gap: .6rem;
+  min-height: 3rem;
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-full);
   background: var(--color-surface-default);
-  padding: 0.6rem 1.1rem 0.6rem 0.75rem;
-
+  padding: .6rem 1.1rem .6rem .75rem;
+  cursor: pointer;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   transition:
-    var(--transition-colors),
-    transform var(--duration-fast) var(--ease-standard),
-    box-shadow var(--duration-fast) var(--ease-standard);
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 220ms ease,
+    transform 220ms cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
 }
 
-.strategic-capabilities__tab[data-tone='blue'] {
-  --tone: var(--color-brand-secondary);
-  --tone-strong: var(--color-brand-secondary-strong);
-  --tone-soft: rgba(47, 111, 143, 0.12);
+.strategic-capabilities__tab[data-tone='blue'] { --tone: var(--color-brand-secondary); --tone-strong: var(--color-brand-secondary-strong); --tone-soft: rgba(47,111,143,.12); }
+.strategic-capabilities__tab[data-tone='gold'] { --tone: var(--color-brand-accent); --tone-strong: #a97a1f; --tone-soft: var(--color-brand-accent-soft); }
+
+.strategic-capabilities__tab::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid var(--tone);
+  opacity: 0;
+  transform: scale(.96);
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(.22,1,.36,1);
+  pointer-events: none;
 }
 
-.strategic-capabilities__tab[data-tone='gold'] {
-  --tone: var(--color-brand-accent);
-  --tone-strong: #a97a1f;
-  --tone-soft: var(--color-brand-accent-soft);
-}
-
-.strategic-capabilities__tab:hover {
-  border-color: var(--tone);
+/* FIX 1 — hover only applies to non-active tabs, so it can never override the active state */
+.strategic-capabilities__tab:not(.strategic-capabilities__tab--active):hover {
+  border-color: color-mix(in srgb, var(--tone) 45%, var(--color-border-default));
   background: var(--tone-soft);
+  transform: translateY(-2px);
 }
+
+/* FIX 2 — ring preview also scoped to non-active tabs */
+.strategic-capabilities__tab:not(.strategic-capabilities__tab--active):hover::after,
+.strategic-capabilities__tab:focus-visible::after { opacity: 1; transform: scale(1); }
 
 .strategic-capabilities__tab:focus-visible {
   outline: 2px solid var(--color-focus-ring);
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
 .strategic-capabilities__tab-number {
@@ -134,11 +97,13 @@
   justify-content: center;
   width: 1.6rem;
   height: 1.6rem;
+  flex: 0 0 1.6rem;
   border-radius: var(--radius-full);
   background: var(--tone-soft);
   color: var(--tone-strong);
-  font-size: 0.66rem;
+  font-size: .66rem;
   font-weight: 700;
+  transition: background-color 180ms ease, color 180ms ease, transform 220ms ease;
 }
 
 .strategic-capabilities__tab-label {
@@ -146,84 +111,53 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   white-space: nowrap;
+  transition: color 180ms ease;
 }
 
 .strategic-capabilities__tab--active {
   border-color: transparent;
   background: var(--tone);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--tone) 18%, transparent);
   transform: translateY(-1px);
 }
 
-.strategic-capabilities__tab--active .strategic-capabilities__tab-number {
-  background: rgba(255, 255, 255, 0.24);
-  color: var(--color-text-inverse);
+/* FIX 3 — active tab keeps a soft tone ring (was: display:none, which popped/flickered) */
+.strategic-capabilities__tab--active::after {
+  opacity: 1;
+  transform: scale(1);
+  border-color: color-mix(in srgb, var(--tone) 45%, transparent);
 }
-
-.strategic-capabilities__tab--active .strategic-capabilities__tab-label {
-  color: var(--color-text-inverse);
-}
-
-/* =========================================
-   STAGE — the active capability, expanded.
-========================================= */
+.strategic-capabilities__tab--active .strategic-capabilities__tab-number { background: rgba(255,255,255,.24); color: var(--color-text-inverse); }
+.strategic-capabilities__tab--active .strategic-capabilities__tab-label { color: var(--color-text-inverse); }
 
 .strategic-capabilities__stage {
   --tone: var(--color-brand-primary);
   --tone-strong: var(--color-brand-primary-strong);
   --tone-soft: var(--color-brand-primary-soft);
-
   position: relative;
   overflow: hidden;
-
   display: grid;
   grid-template-columns: clamp(9rem, 16vw, 12rem) minmax(0, 1fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 4rem);
-
   border: 1px solid var(--color-border-default);
   border-radius: 1.5rem;
   background: var(--color-surface-default);
   box-shadow: var(--shadow-md);
   padding: clamp(2.25rem, 4vw, 3.25rem);
-
-  animation: strategic-capabilities-stage-in var(--duration-slow) var(--ease-standard) both;
 }
 
-.strategic-capabilities__stage[data-tone='blue'] {
-  --tone: var(--color-brand-secondary);
-  --tone-strong: var(--color-brand-secondary-strong);
-  --tone-soft: rgba(47, 111, 143, 0.12);
-}
-
-.strategic-capabilities__stage[data-tone='gold'] {
-  --tone: var(--color-brand-accent);
-  --tone-strong: #a97a1f;
-  --tone-soft: var(--color-brand-accent-soft);
-}
-
-@keyframes strategic-capabilities-stage-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Media column */
+.strategic-capabilities__stage[data-tone='blue'] { --tone: var(--color-brand-secondary); --tone-strong: var(--color-brand-secondary-strong); --tone-soft: rgba(47,111,143,.12); }
+.strategic-capabilities__stage[data-tone='gold'] { --tone: var(--color-brand-accent); --tone-strong: #a97a1f; --tone-soft: var(--color-brand-accent-soft); }
 
 .strategic-capabilities__stage-media {
   position: relative;
   overflow: hidden;
-
   aspect-ratio: 1;
   width: 100%;
-
   border-radius: 1.15rem;
   box-shadow: inset 0 0 0 1px var(--color-border-default);
+  isolation: isolate;
 }
 
 .strategic-capabilities__stage-media::after {
@@ -231,163 +165,67 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    200deg,
-    transparent 55%,
-    color-mix(in srgb, var(--tone-strong) 55%, transparent) 130%
-  );
+  background: linear-gradient(200deg, transparent 55%, color-mix(in srgb, var(--tone-strong) 55%, transparent) 130%);
   pointer-events: none;
 }
 
 .strategic-capabilities__stage-media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  animation: strategic-capabilities-media-in 700ms var(--ease-standard) both;
+  animation: capability-image-in 520ms cubic-bezier(.22,1,.36,1) both;
+  will-change: opacity, transform;
 }
 
-@keyframes strategic-capabilities-media-in {
-  from {
-    opacity: 0;
-    transform: scale(1.07);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+@keyframes capability-image-in {
+  from { opacity: .45; transform: scale(1.035); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .strategic-capabilities__stage-media-badge {
   position: absolute;
   z-index: 2;
-  top: 0.75rem;
-  left: 0.75rem;
-
+  top: .75rem;
+  left: .75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 2rem;
   height: 2rem;
-  padding-inline: 0.5rem;
-
+  padding-inline: .5rem;
   border-radius: var(--radius-full);
   background: var(--color-surface-default);
   color: var(--tone-strong);
-
-  font-size: 0.72rem;
+  font-size: .72rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
-
   box-shadow: var(--shadow-sm);
 }
 
-/* Body column */
-
-.strategic-capabilities__stage-body {
-  min-width: 0;
-}
-
-.strategic-capabilities__stage-eyebrow {
-  display: block;
-  margin-bottom: 0.6rem;
-
-  color: var(--tone-strong);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.1em;
-}
-
-.strategic-capabilities__stage-body h3 {
-  margin: 0 0 0.85rem;
-
-  font-size: var(--font-size-2xl);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.strategic-capabilities__stage-body p {
-  max-width: 46rem;
-  margin: 0 0 1.5rem;
-
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
-}
-
-.strategic-capabilities__stage-tag {
-  display: inline-flex;
-  align-items: center;
-
-  border-radius: var(--radius-full);
-  background: var(--tone-soft);
-  color: var(--tone-strong);
-  padding: 0.4rem 0.9rem;
-
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.02em;
-}
-
-/* =========================================
-   TABLET
-========================================= */
+.strategic-capabilities__stage-body { min-width: 0; }
+.strategic-capabilities__stage-eyebrow { display: block; margin-bottom: .6rem; color: var(--tone-strong); font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); letter-spacing: .1em; }
+.strategic-capabilities__stage-body h3 { margin: 0 0 .85rem; font-size: var(--font-size-2xl); line-height: 1.1; letter-spacing: -.02em; }
+.strategic-capabilities__stage-body p { max-width: 46rem; margin: 0 0 1.5rem; color: var(--color-text-secondary); font-size: var(--font-size-md); line-height: var(--line-height-body); }
+.strategic-capabilities__stage-tag { display: inline-flex; align-items: center; border-radius: var(--radius-full); background: var(--tone-soft); color: var(--tone-strong); padding: .4rem .9rem; font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); }
 
 @media (max-width: 920px) {
-  .strategic-capabilities__header-content {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .strategic-capabilities__header-content p {
-    max-width: 560px;
-  }
-
-  .strategic-capabilities__stage {
-    grid-template-columns: 1fr;
-    justify-items: start;
-  }
-
-  .strategic-capabilities__stage-media {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-  }
+  .strategic-capabilities__stage { grid-template-columns: 1fr; justify-items: start; }
+  .strategic-capabilities__stage-media { width: 100%; aspect-ratio: 16 / 9; }
 }
 
-/* =========================================
-   MOBILE
-========================================= */
-
 @media (max-width: 560px) {
-  .strategic-capabilities__tab-label {
-    font-size: var(--font-size-xs);
-  }
-
-  .strategic-capabilities__stage {
-    padding: 1.75rem;
-    border-radius: 1.25rem;
-  }
-
-  .strategic-capabilities__stage-media {
-    aspect-ratio: 4 / 3;
-  }
-
-  .strategic-capabilities__stage-body h3 {
-    font-size: var(--font-size-xl);
-  }
+  .strategic-capabilities__tabs { gap: .5rem; }
+  .strategic-capabilities__tab { padding-right: .85rem; }
+  .strategic-capabilities__tab-label { font-size: var(--font-size-xs); }
+  .strategic-capabilities__stage { padding: 1.5rem; border-radius: 1.25rem; }
+  .strategic-capabilities__stage-media { aspect-ratio: 4 / 3; }
+  .strategic-capabilities__stage-body h3 { font-size: var(--font-size-xl); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .strategic-capabilities__stage {
-    animation: none;
-  }
-
-  .strategic-capabilities__stage-media img {
-    animation: none;
-  }
-
   .strategic-capabilities__tab,
-  .strategic-capabilities__tab--active {
-    transition: none;
-    transform: none;
-  }
+  .strategic-capabilities__tab::after,
+  .strategic-capabilities__tab-number,
+  .strategic-capabilities__tab-label { transition: none; }
+  .strategic-capabilities__stage-media img { animation: none; }
 }

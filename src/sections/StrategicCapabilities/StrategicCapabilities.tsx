@@ -3,13 +3,6 @@ import Container from '../../components/shared/Container'
 import Reveal from '../../components/shared/Reveal'
 import './StrategicCapabilities.css'
 
-/* =========================================
-   CAPABILITY IMAGES
-   NOTE: filenames matched to what's in
-   src/assets/images/capabilities/ — adjust the
-   .jpg extension below if your files are .png.
-========================================= */
-
 import imgInnovation from '../../assets/images/capabilities/innovation.jpg'
 import imgPrecision from '../../assets/images/capabilities/precision.jpg'
 import imgIntelligence from '../../assets/images/capabilities/intelligence.jpeg'
@@ -22,94 +15,14 @@ import imgKnowledge from '../../assets/images/capabilities/knowlegde.jpeg'
 type Tone = 'green' | 'blue' | 'gold'
 
 const capabilities = [
-  {
-    number: '01',
-    short: 'Innovation',
-    title: 'Agricultural Innovation',
-    appliesTo: 'Research & field trials',
-    description:
-      'Developing practical agricultural solutions through research, experimentation, and field understanding.',
-    tone: 'green' as Tone,
-    image: imgInnovation,
-    imageAlt: 'Researcher examining a wheat sample in the field',
-  },
-  {
-    number: '02',
-    short: 'Precision',
-    title: 'Precision Agriculture',
-    appliesTo: 'Measurement & timing',
-    description:
-      'Improving farm decisions through precise observation, measurement, and targeted action.',
-    tone: 'gold' as Tone,
-    image: imgPrecision,
-    imageAlt: 'Hand inspecting a crop sample up close',
-  },
-  {
-    number: '03',
-    short: 'Intelligence',
-    title: 'Artificial Intelligence',
-    appliesTo: 'Analysis & prediction',
-    description:
-      'Using intelligent systems to support analysis, prediction, and smarter agricultural planning.',
-    tone: 'blue' as Tone,
-    image: imgIntelligence,
-    imageAlt: 'Digital data visualization representing agricultural intelligence',
-  },
-  {
-    number: '04',
-    short: 'Digital',
-    title: 'Digital Agriculture',
-    appliesTo: 'Data & workflows',
-    description:
-      'Connecting agricultural knowledge and field data through digital tools and workflows.',
-    tone: 'blue' as Tone,
-    image: imgDigital,
-    imageAlt: 'Farmer using a digital device in the field',
-  },
-  {
-    number: '05',
-    short: 'Crop Management',
-    title: 'Smart Crop Management',
-    appliesTo: 'Monitoring & yield',
-    description:
-      'Helping farmers monitor crop needs and improve productivity with informed management practices.',
-    tone: 'green' as Tone,
-    image: imgCropManagement,
-    imageAlt: 'Aerial view of managed crop rows',
-  },
-  {
-    number: '06',
-    short: 'Aerial',
-    title: 'Drone Technologies',
-    appliesTo: 'Aerial survey',
-    description:
-      'Applying aerial intelligence to strengthen field visibility and precision agriculture operations.',
-    tone: 'blue' as Tone,
-    image: imgAerial,
-    imageAlt: 'Agricultural drone spraying a field',
-  },
-  {
-    number: '07',
-    short: 'Water',
-    title: 'Water Optimization',
-    appliesTo: 'Irrigation planning',
-    description:
-      'Supporting efficient water use through better planning, monitoring, and resource decisions.',
-    tone: 'gold' as Tone,
-    image: imgWaterOptimization,
-    imageAlt: 'Irrigation system watering crop rows',
-  },
-  {
-    number: '08',
-    short: 'Knowledge',
-    title: 'Knowledge Development',
-    appliesTo: 'Training & research',
-    description:
-      'Building agricultural capability through scientific expertise, learning, and applied insight.',
-    tone: 'green' as Tone,
-    image: imgKnowledge,
-    imageAlt: 'Field expert sharing knowledge with a farmer',
-  },
+  { number: '01', short: 'Innovation', title: 'Agricultural Innovation', appliesTo: 'Research & field trials', description: 'Developing practical agricultural solutions through research, experimentation, and field understanding.', tone: 'green' as Tone, image: imgInnovation, imageAlt: 'Researcher examining a wheat sample in the field' },
+  { number: '02', short: 'Precision', title: 'Precision Agriculture', appliesTo: 'Measurement & timing', description: 'Improving farm decisions through precise observation, measurement, and targeted action.', tone: 'gold' as Tone, image: imgPrecision, imageAlt: 'Hand inspecting a crop sample up close' },
+  { number: '03', short: 'Intelligence', title: 'Artificial Intelligence', appliesTo: 'Analysis & prediction', description: 'Using intelligent systems to support analysis, prediction, and smarter agricultural planning.', tone: 'blue' as Tone, image: imgIntelligence, imageAlt: 'Digital data visualization representing agricultural intelligence' },
+  { number: '04', short: 'Digital', title: 'Digital Agriculture', appliesTo: 'Data & workflows', description: 'Connecting agricultural knowledge and field data through digital tools and workflows.', tone: 'blue' as Tone, image: imgDigital, imageAlt: 'Farmer using a digital device in the field' },
+  { number: '05', short: 'Crop Management', title: 'Smart Crop Management', appliesTo: 'Monitoring & yield', description: 'Helping farmers monitor crop needs and improve productivity with informed management practices.', tone: 'green' as Tone, image: imgCropManagement, imageAlt: 'Aerial view of managed crop rows' },
+  { number: '06', short: 'Aerial', title: 'Drone Technologies', appliesTo: 'Aerial survey', description: 'Applying aerial intelligence to strengthen field visibility and precision agriculture operations.', tone: 'blue' as Tone, image: imgAerial, imageAlt: 'Agricultural drone surveying a field' },
+  { number: '07', short: 'Water', title: 'Water Optimization', appliesTo: 'Irrigation planning', description: 'Supporting efficient water use through better planning, monitoring, and resource decisions.', tone: 'gold' as Tone, image: imgWaterOptimization, imageAlt: 'Irrigation system watering crop rows' },
+  { number: '08', short: 'Knowledge', title: 'Knowledge Development', appliesTo: 'Training & research', description: 'Building agricultural capability through scientific expertise, learning, and applied insight.', tone: 'green' as Tone, image: imgKnowledge, imageAlt: 'Field expert sharing knowledge with a farmer' },
 ] as const
 
 function StrategicCapabilities() {
@@ -117,10 +30,14 @@ function StrategicCapabilities() {
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([])
   const active = capabilities[activeIndex]
 
+  const selectCapability = (index: number) => {
+    if (index !== activeIndex) setActiveIndex(index)
+  }
+
   const focusTab = (index: number) => {
     const total = capabilities.length
     const next = (index + total) % total
-    setActiveIndex(next)
+    selectCapability(next)
     tabRefs.current[next]?.focus()
   }
 
@@ -141,11 +58,7 @@ function StrategicCapabilities() {
   }
 
   return (
-    <section
-      className="strategic-capabilities"
-      id="capabilities"
-      aria-labelledby="strategic-capabilities-title"
-    >
+    <section className="strategic-capabilities" id="capabilities" aria-labelledby="strategic-capabilities-title">
       <Container>
         <Reveal className="strategic-capabilities__label">
           <span>03</span>
@@ -155,15 +68,7 @@ function StrategicCapabilities() {
 
         <div className="strategic-capabilities__header-content">
           <Reveal as="div" threshold={0.2}>
-            <h2 id="strategic-capabilities-title">
-              Eight capabilities, one field-tested approach.
-            </h2>
-          </Reveal>
-
-          <Reveal as="div" threshold={0.2} delay={100}>
-            <p>
-             
-            </p>
+            <h2 id="strategic-capabilities-title">Eight capabilities, one field-tested approach.</h2>
           </Reveal>
         </div>
 
@@ -182,27 +87,19 @@ function StrategicCapabilities() {
                   type="button"
                   role="tab"
                   key={capability.number}
-                  ref={(node) => {
-                    tabRefs.current[index] = node
-                  }}
+                  ref={(node) => { tabRefs.current[index] = node }}
                   id={`capability-tab-${capability.number}`}
                   aria-selected={isActive}
                   aria-controls={`capability-panel-${capability.number}`}
                   tabIndex={isActive ? 0 : -1}
                   data-tone={capability.tone}
-                  className={`strategic-capabilities__tab ${
-                    isActive ? 'strategic-capabilities__tab--active' : ''
-                  }`}
-                  onMouseEnter={() => setActiveIndex(index)}
-                  onFocus={() => setActiveIndex(index)}
-                  onClick={() => setActiveIndex(index)}
+                  className={`strategic-capabilities__tab ${isActive ? 'strategic-capabilities__tab--active' : ''}`}
+                  onMouseEnter={() => selectCapability(index)}
+                  onFocus={() => selectCapability(index)}
+                  onClick={() => selectCapability(index)}
                 >
-                  <span className="strategic-capabilities__tab-number">
-                    {capability.number}
-                  </span>
-                  <span className="strategic-capabilities__tab-label">
-                    {capability.short}
-                  </span>
+                  <span className="strategic-capabilities__tab-number">{capability.number}</span>
+                  <span className="strategic-capabilities__tab-label">{capability.short}</span>
                 </button>
               )
             })}
@@ -214,27 +111,17 @@ function StrategicCapabilities() {
             id={`capability-panel-${active.number}`}
             aria-labelledby={`capability-tab-${active.number}`}
             data-tone={active.tone}
-            key={active.number}
           >
             <div className="strategic-capabilities__stage-media">
-              <img src={active.image} alt={active.imageAlt} />
-              <span className="strategic-capabilities__stage-media-badge">
-                {active.number}
-              </span>
+              <img key={active.image} src={active.image} alt={active.imageAlt} />
+              <span className="strategic-capabilities__stage-media-badge">{active.number}</span>
             </div>
 
             <div className="strategic-capabilities__stage-body">
-              <span className="strategic-capabilities__stage-eyebrow">
-                CAPABILITY {active.number} OF 08
-              </span>
-
+              <span className="strategic-capabilities__stage-eyebrow">CAPABILITY {active.number} OF 08</span>
               <h3>{active.title}</h3>
-
               <p>{active.description}</p>
-
-              <span className="strategic-capabilities__stage-tag">
-                Applies to &mdash; {active.appliesTo}
-              </span>
+              <span className="strategic-capabilities__stage-tag">Applies to &mdash; {active.appliesTo}</span>
             </div>
           </div>
         </Reveal>
