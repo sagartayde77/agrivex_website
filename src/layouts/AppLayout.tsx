@@ -16,7 +16,7 @@ function AppLayout() {
     <>
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main id="top">
         <Hero />
         <AgricultureVision />
         <AgrivexEcosystem />

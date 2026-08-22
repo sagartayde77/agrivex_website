@@ -22,7 +22,7 @@ function Footer() {
     <footer className="footer">
       <Container className="footer__content">
         <div className="footer__brand">
-          <Logo href="#" />
+          <Logo href="#top" />
 
           <p>
             Building smarter agricultural ecosystems through science,
@@ -72,7 +72,7 @@ function Footer() {
       <div className="footer__base">
         <Container className="footer__base-inner">
           <div className="footer__base-brand">
-            <Logo href="#" />
+            <Logo href="#top" />
           </div>
 
           <div className="footer__social">

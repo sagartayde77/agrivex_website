@@ -81,7 +81,7 @@ function Navbar() {
     >
       <Container className="navbar__container">
         <div className="navbar__brand">
-          <Logo href="#" />
+          <Logo href="#top" />
 
           <span className="navbar__eyebrow">
             AGRIVEX PVT. LTD.
@@ -140,6 +140,7 @@ function Navbar() {
           <Button
             className="navbar__button"
             href="#dealer"
+            onClick={() => setIsMenuOpen(false)}
           >
             Become a Dealer
           </Button>

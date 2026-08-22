@@ -11,7 +11,11 @@ function CareerCTA() {
   }
 
   return (
-    <section className="career-cta" aria-labelledby="career-cta-title">
+    <section
+      className="career-cta"
+      id="careers"
+      aria-labelledby="career-cta-title"
+    >
       <Container>
         <Reveal className="career-cta__ribbon">
           {/* Animated background elements */}
