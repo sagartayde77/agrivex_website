@@ -16,6 +16,7 @@ function AppLayout() {
     <>
       <ScrollProgress />
       <Navbar />
+
       <main id="top">
         <Hero />
         <AgricultureVision />
@@ -23,9 +24,10 @@ function AppLayout() {
         <StrategicCapabilities />
         <DealerPartnership />
         <FarmerSolutions />
-        <Careers />
         <Contact />
+        <Careers />
       </main>
+
       <Footer />
       <BackToTop />
     </>
