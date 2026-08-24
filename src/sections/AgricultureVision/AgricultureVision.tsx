@@ -5,7 +5,7 @@ import './AgricultureVision.css'
 
 import visionImage from '../../assets/images/vision/agriculture-vision.png'
 import fieldUnderstandingImage from '../../assets/images/vision/field-understanding.png'
-import reliableProductsImage from '../../assets/images/vision/reliable-products.png'
+import reliableProductsImage from '../../assets/images/vision/reliable-products.jpg'
 import strongPartnershipsImage from '../../assets/images/vision/strong-partnerships.jpg'
 
 const visionPillars = [
